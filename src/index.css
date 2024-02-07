@@ -3,3 +3,18 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+#root {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  background-color: #263238;
+}
+
+.Typewriter {
+  display: inline;
+  margin: 0 5px;
+}
+.Typewriter__wrapper{
+  color: #00e676;
+}
