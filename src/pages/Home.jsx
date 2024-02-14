@@ -3,6 +3,8 @@ import { TypeEffect } from "../components/TypeEffect";
 import { Box, Grid, Button } from '@mui/material';
 import heroImg from "../assets/images/laptop.png"
 import { makeStyles } from 'tss-react/mui';
+import { useState } from "react";
+import FormDialog from "../components/FormDialog";
 
 
 const useStyles = makeStyles()((theme) => {
@@ -29,18 +31,23 @@ const useStyles = makeStyles()((theme) => {
 })
 
 const Home = () => {
-
+  const [open, setOpen] = useState(false)
   const { classes } = useStyles()
-
 
   return (
     <>
       <Particle />
+      <FormDialog open={open} setOpen={setOpen} />
       <Box className={classes.heroBox}>
         <Grid container spacing={2}>
           <Grid item xs={10} md={6} margin={"auto"} textAlign="center" >
             <TypeEffect />
-            <Button variant="contained" color="info" style={{ marginTop: "1rem" }}>
+            <Button
+              onClick={() => setOpen(true)}
+              variant="contained"
+              color="info"
+              style={{ marginTop: "1rem" }}
+            >
               Take A Quiz
             </Button>
           </Grid>

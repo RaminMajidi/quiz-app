@@ -1,5 +1,6 @@
 import Typewriter from 'typewriter-effect';
-import { Box, Typography } from '@mui/material';
+import {Typography } from '@mui/material';
+import { names } from '../assets/data/data';
 
 
 export const TypeEffect = () => {
@@ -9,7 +10,7 @@ export const TypeEffect = () => {
             <span>The QuizApp includes a wide number of</span>
             <Typewriter
                 options={{
-                    strings: ['Linux', 'PHP', 'JavaScript', "HTML", 'CSS', 'BASH', 'Cloud', 'DevOps'],
+                    strings: names,
                     autoStart: true,
                     loop: true,
                 }}
