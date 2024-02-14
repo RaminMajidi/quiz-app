@@ -1,9 +1,16 @@
-import React from 'react'
+import { useEffect } from "react"
+import useQuizStore from "../zustand/quizStore"
 
 const Quiz = () => {
-  return (
-    <div>Quiz</div>
-  )
+
+    const { setQuiz, questions } = useQuizStore()
+
+    useEffect(() => {
+        console.log(questions);
+    }, [questions])
+    return (
+        <div>Quiz</div>
+    )
 }
 
 export default Quiz

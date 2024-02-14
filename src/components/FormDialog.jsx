@@ -8,6 +8,10 @@ import { useState } from 'react';
 import MultipleSelectCheckmarks from './MultipleSelectCheckmarks';
 import BasicSelect from './BasicSelect';
 import { categores, difficultys } from '../assets/data/data';
+import useQuizStore from '../zustand/quizStore';
+import { redirect } from "react-router-dom"
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+const TOKEN = import.meta.env.VITE_TOKEN;
 
 
 
@@ -16,10 +20,29 @@ const FormDialog = ({ open, setOpen }) => {
     const [category, setCategory] = useState('')
     const [difficulty, setDifficulty] = useState('')
     const [tags, setTags] = useState([])
+    const [loading, setLoading] = useState(false)
+    const { setQuiz,questions } = useQuizStore()
 
     const handleClose = () => {
         setOpen(false);
     };
+
+    const handleGenarateQuiz = async () => {
+        const url = BASE_URL + `?apiKey=${TOKEN}&category=${category}&difficulty=${difficulty}&limit=20&tags=${tags?.toString()}`;
+        setLoading(true)
+        const res = await fetch(url)
+        if (res.status === 200) {
+            const data = await res.json()
+            console.log(data);
+            await setQuiz(data)
+            setLoading(false)
+            console.log(questions);
+            return redirect("/quiz");
+        } else {
+            console.log(res.status);
+        }
+        setLoading(false)
+    }
 
     return (
         <>
@@ -29,11 +52,8 @@ const FormDialog = ({ open, setOpen }) => {
                 PaperProps={{
                     component: 'form',
                     onSubmit: (event) => {
-                        console.log(category);
-                        console.log(difficulty);
-                        console.log(tags);
                         event.preventDefault();
-                        // handleClose();
+                        handleGenarateQuiz();
                     },
                 }}
             >
@@ -77,7 +97,12 @@ const FormDialog = ({ open, setOpen }) => {
                         variant="contained"
                         color="info"
                         type="submit">
-                        Generate Quiz
+                        {loading ?
+                            <span>Loading...</span>
+                            :
+                            <span>Generate Quiz</span>
+                        }
+
                     </Button>
                 </DialogActions>
             </Dialog>
