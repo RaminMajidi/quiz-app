@@ -26,7 +26,7 @@ const Particle = () => {
       options={{
         style: {
           position: "relative",
-          height: "90dvh",
+          height: "99dvh",
           top: 0,
           left: 0,
           zIndex:0
