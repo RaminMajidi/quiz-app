@@ -6,7 +6,7 @@ import { names } from '../assets/data/data';
 export const TypeEffect = () => {
     return (
 
-        <Typography variant="h6" color="#fafafa" textAlign="center">
+        <Typography variant="h6" textAlign="center">
             <span>The QuizApp includes a wide number of</span>
             <Typewriter
                 options={{

@@ -9,19 +9,18 @@ import MultipleSelectCheckmarks from './MultipleSelectCheckmarks';
 import BasicSelect from './BasicSelect';
 import { categores, difficultys } from '../assets/data/data';
 import useQuizStore from '../zustand/quizStore';
-import { redirect } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const TOKEN = import.meta.env.VITE_TOKEN;
 
-
-
 const FormDialog = ({ open, setOpen }) => {
 
+    const navigate = useNavigate()
     const [category, setCategory] = useState('')
     const [difficulty, setDifficulty] = useState('')
     const [tags, setTags] = useState([])
     const [loading, setLoading] = useState(false)
-    const { setQuiz,questions } = useQuizStore()
+    const { setQuiz } = useQuizStore()
 
     const handleClose = () => {
         setOpen(false);
@@ -33,11 +32,12 @@ const FormDialog = ({ open, setOpen }) => {
         const res = await fetch(url)
         if (res.status === 200) {
             const data = await res.json()
-            console.log(data);
-            await setQuiz(data)
+            const questions = await data.map(q => (
+                { ...q, correct_answer: null }
+            ))
+            await setQuiz(questions)
             setLoading(false)
-            console.log(questions);
-            return redirect("/quiz");
+            navigate("/quiz");
         } else {
             console.log(res.status);
         }
@@ -60,8 +60,8 @@ const FormDialog = ({ open, setOpen }) => {
                 <DialogTitle>Quiz Details</DialogTitle>
                 <DialogContent>
                     <DialogContentText px={1}>
-                        Please enter the details of your questionnaire so that we can create
-                        the desired questions for you.
+                        Please enter the details of your questionnaire so
+                        that we can create the desired questions for you.
                     </DialogContentText>
 
                     <BasicSelect
@@ -102,7 +102,6 @@ const FormDialog = ({ open, setOpen }) => {
                             :
                             <span>Generate Quiz</span>
                         }
-
                     </Button>
                 </DialogActions>
             </Dialog>
