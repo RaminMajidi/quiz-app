@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom"
 const Quiz = () => {
 
     const navigate = useNavigate()
-    const { questions } = useQuizStore()
+    const { questions ,setQuiz} = useQuizStore()
     const [index, setIndex] = useState(0);
 
     const nextQuestionHandler = () => {
@@ -41,12 +41,30 @@ const Quiz = () => {
             return navigate('/404')
         }
     }, [questions])
+
+    useEffect(() => {
+        const onConfirmRefresh = function (event) {
+            event.preventDefault();
+            return event.returnValue = "Are you sure you want to leave the page?";
+        }
+        window.addEventListener("beforeunload", onConfirmRefresh, { capture: true })
+        return (
+            window.removeEventListener("beforeunload", onConfirmRefresh, { capture: true })
+        )
+    }, [])
+
+
     return (
-        <Container maxWidth="md" sx={{ padding: "1.5rem .8rem" }}>
+        <Container maxWidth="md"
+            sx={{
+                padding: "1.5rem .8rem",
+                height: "100dvh"
+            }}
+        >
             {questions.length &&
                 <>
                     <Question data={questions[index]} index={index} />
-                    <Box sx={{ flexGrow: 1, mt: '1rem' }}>
+                    <Box sx={{ flexGrow: 1, mt: '2.5rem' }}>
                         <Grid container spacing={4}>
 
                             {index > 0 &&
@@ -81,7 +99,6 @@ const Quiz = () => {
                                     End Quiz
                                 </Button>
                             </Grid>
-
                         </Grid>
                     </Box>
                 </>

@@ -12,10 +12,16 @@
   color: #fafafa;
 }
 
+body {
+  overflow-x: hidden;
+}
+
+
 .Typewriter {
   display: inline;
   margin: 0 5px;
 }
-.Typewriter__wrapper{
+
+.Typewriter__wrapper {
   color: #00e676;
 }
