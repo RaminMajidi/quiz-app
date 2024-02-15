@@ -12,3 +12,6 @@ const useQuizStore = create((set) => ({
 }))
 
 export default useQuizStore
+
+
+

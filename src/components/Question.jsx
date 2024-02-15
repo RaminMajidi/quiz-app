@@ -5,28 +5,24 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import useQuizStore from "../zustand/quizStore"
 
-const Question = ({ data }) => {
+const Question = ({ data, index }) => {
 
-    const { questions, setAnswer } = useQuizStore()
-
+    const { setAnswer } = useQuizStore()
 
     const handleRadioChange = (id, event) => {
         setAnswer(id, event.target.value)
-        console.log(id);
-        console.log(event.target.value);
-
     };
-
-
 
     return (
         <FormControl>
-            <Typography variant="h4" mb={2}>
+            <Typography variant="h6" mb={2}>
+                Question : {index + 1}
+            </Typography>
+            <Typography  variant="h5" mb={2}>
                 {data.question}
             </Typography>
             <RadioGroup
                 aria-labelledby={"radio-group-label-" + data.id}
-                // defaultValue={data.correct_answer}
                 name="radio-group"
                 onChange={(e) => handleRadioChange(data.id, e)}
             >

@@ -9,7 +9,8 @@ import MultipleSelectCheckmarks from './MultipleSelectCheckmarks';
 import BasicSelect from './BasicSelect';
 import { categores, difficultys } from '../assets/data/data';
 import useQuizStore from '../zustand/quizStore';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { errorHandler } from "../utils/Toast"
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const TOKEN = import.meta.env.VITE_TOKEN;
 
@@ -29,19 +30,28 @@ const FormDialog = ({ open, setOpen }) => {
     const handleGenarateQuiz = async () => {
         const url = BASE_URL + `?apiKey=${TOKEN}&category=${category}&difficulty=${difficulty}&limit=20&tags=${tags?.toString()}`;
         setLoading(true)
-        const res = await fetch(url)
-        if (res.status === 200) {
-            const data = await res.json()
-            const questions = await data.map(q => (
-                { ...q, correct_answer: null }
-            ))
-            await setQuiz(questions)
+
+        try {
+            const res = await fetch(url)
+
+            if (res.status === 200) {
+                const data = await res.json()
+                const questions = await data.map(q => (
+                    { ...q, correct_answer: null }
+                ))
+                await setQuiz(questions)
+                navigate("/quiz");
+            }
+            if (res.status === 404) {
+                const error = new Error("The desired test was not found, please be more careful ?")
+                errorHandler(error, 5000)
+            }
+
+        } catch (error) {
+            errorHandler(error)
+        } finally {
             setLoading(false)
-            navigate("/quiz");
-        } else {
-            console.log(res.status);
         }
-        setLoading(false)
     }
 
     return (
