@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom"
 const Quiz = () => {
 
     const navigate = useNavigate()
-    const { questions } = useQuizStore()
+    const { questions, setQuiz } = useQuizStore()
     const [index, setIndex] = useState(0);
     const [openDialog, setOpenDialog] = useState(false)
     const [messageDialog, setMessageDialog] = useState('')
@@ -41,7 +41,9 @@ const Quiz = () => {
 
     // *******************************
     const finishQuizHandler = () => {
-        navigate("/result", { state: { message: "oK" } })
+        const data = questions;
+        setQuiz([])
+        navigate("/result", { state: { questions: data } })
     }
     // *******************************
 
