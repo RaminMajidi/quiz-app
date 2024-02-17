@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
-import { names } from '../assets/data/data';
+
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -21,7 +21,7 @@ const MenuProps = {
 
 
 
-export default function MultipleSelectCheckmarks({ lable, inputLabel, values, setValues }) {
+export default function MultipleSelectCheckmarks({ lable, inputLabel, values, setValues,items }) {
 
     const handleChange = (event) => {
         const {
@@ -49,10 +49,10 @@ export default function MultipleSelectCheckmarks({ lable, inputLabel, values, se
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}
                 >
-                    {names?.map((name) => (
-                        <MenuItem key={name} value={name}>
-                            <Checkbox checked={values.indexOf(name) > -1} />
-                            <ListItemText primary={name} />
+                    {items?.map((item) => (
+                        <MenuItem key={item} value={item}>
+                            <Checkbox checked={values.indexOf(item) > -1} />
+                            <ListItemText primary={item} />
                         </MenuItem>
                     ))}
                 </Select>

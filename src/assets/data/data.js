@@ -52,21 +52,68 @@ export const categores = [
     },
 ];
 
-export const difficultys = [
+export const Limits = [
     {
-        value: '',
-        text: 'Any Difficulty'
+        value: '10',
+        text: '10'
     },
     {
-        value: 'Easy',
-        text: 'Easy'
+        value: '15',
+        text: '15'
     },
     {
-        value: 'Medium',
-        text: 'Medium'
-    },
-    {
-        value: 'Hard',
-        text: 'Hard'
+        value: '20',
+        text: '20'
     },
 ];
+
+export const tags = [
+    {
+        value: "HTML",
+        text: "HTML"
+    },
+    {
+        value: "BASH",
+        text: "BASH"
+    },
+    {
+        value: "WordPress",
+        text: "WordPress"
+    },
+    {
+        value: "Python",
+        text: "Python"
+    },
+    {
+        value: "PHP",
+        text: "PHP"
+    },
+    {
+        value: "MySQL",
+        text: "MySQL"
+    },
+    {
+        value: "Linux",
+        text: "Linux"
+    },
+    {
+        value: "Laravel",
+        text: "Laravel"
+    },
+    {
+        value: "Kubernetes",
+        text: "Kubernetes"
+    },
+    {
+        value: "JavaScript",
+        text: "JavaScript"
+    },
+    {
+        value: "DevOps",
+        text: "DevOps"
+    },
+    {
+        value: "Docker",
+        text: "Docker"
+    },
+]

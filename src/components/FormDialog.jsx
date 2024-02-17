@@ -5,12 +5,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
-import MultipleSelectCheckmarks from './MultipleSelectCheckmarks';
 import BasicSelect from './BasicSelect';
-import { categores, difficultys } from '../assets/data/data';
+import { categores, tags,Limits } from '../assets/data/data';
 import useQuizStore from '../zustand/quizStore';
 import { useNavigate } from "react-router-dom";
 import { errorHandler } from "../utils/Toast"
+
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const TOKEN = import.meta.env.VITE_TOKEN;
 
@@ -18,8 +18,8 @@ const FormDialog = ({ open, setOpen }) => {
 
     const navigate = useNavigate()
     const [category, setCategory] = useState('')
-    const [difficulty, setDifficulty] = useState('')
-    const [tags, setTags] = useState([])
+    const [limit, setLimit] = useState(10)
+    const [tag, setTag] = useState('')
     const [loading, setLoading] = useState(false)
     const { setQuiz } = useQuizStore()
 
@@ -28,7 +28,7 @@ const FormDialog = ({ open, setOpen }) => {
     };
 
     const handleGenarateQuiz = async () => {
-        const url = BASE_URL + `?apiKey=${TOKEN}&category=${category}&difficulty=${difficulty}&limit=20&tags=${tags?.toString()}`;
+        const url = BASE_URL + `?apiKey=${TOKEN}&category=${category}&limit=${limit}&tags=${tag}`;
         setLoading(true)
 
         try {
@@ -75,7 +75,7 @@ const FormDialog = ({ open, setOpen }) => {
                     </DialogContentText>
 
                     <BasicSelect
-                        inputLabbel="Category"
+                        inputLabel="Category"
                         label="Category"
                         value={category}
                         setValue={setCategory}
@@ -83,17 +83,18 @@ const FormDialog = ({ open, setOpen }) => {
                     />
 
                     <BasicSelect
-                        inputLabbel="Difficulty"
-                        label="Difficulty"
-                        value={difficulty}
-                        setValue={setDifficulty}
-                        items={difficultys}
+                        inputLabel="Limit"
+                        label="Limit"
+                        value={limit}
+                        setValue={setLimit}
+                        items={Limits}
                     />
-                    <MultipleSelectCheckmarks
-                        inputLabel="Tags"
-                        lable="Tags"
-                        values={tags}
-                        setValues={setTags}
+                    <BasicSelect
+                        inputLabel="Tag"
+                        label="Tag"
+                        value={tag}
+                        setValue={setTag}
+                        items={tags}
                     />
                 </DialogContent>
                 <DialogActions>

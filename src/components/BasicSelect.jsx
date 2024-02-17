@@ -3,13 +3,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 
-const BasicSelect = ({ inputLabbel, label, value, setValue, items }) => {
+const BasicSelect = ({ inputLabel, label, value, setValue, items }) => {
     return (
         <FormControl sx={{ my: 1, width: "100%" }}>
-            <InputLabel id={inputLabbel + "-label"}>{inputLabbel}</InputLabel>
+            <InputLabel id={inputLabel + "-label"}>{inputLabel}</InputLabel>
             <Select
-                labelId={inputLabbel + "-label"}
-                id={inputLabbel + "-select"}
+                labelId={inputLabel + "-label"}
+                id={inputLabel + "-select"}
                 value={value}
                 label={label}
                 onChange={(e) => setValue(e.target.value)}
