@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import ResultItem from "../components/ResultItem"
-
+import BasicSpeedDial from "../components/BasicSpeedDial"
 
 
 const Result = () => {
@@ -38,6 +38,12 @@ const Result = () => {
             setNotAnswer(noAnswer)
         }
         quizResultHandler()
+
+
+        // clear hostory state 
+        return (
+            window.history.replaceState({}, '')
+        )
     }, [])
 
 
@@ -45,9 +51,11 @@ const Result = () => {
         <Container maxWidth="lg"
             sx={{
                 padding: "1.5rem .8rem",
-                minHeight: "100dvh"
+                minHeight: "100dvh",
+                position: "relative"
             }}
         >
+            <BasicSpeedDial />
 
             <Grid container spacing={2}>
                 <Grid item xs={12}
