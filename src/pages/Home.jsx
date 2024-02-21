@@ -1,7 +1,6 @@
 import Particle from "../components/Particle";
 import { TypeEffect } from "../components/TypeEffect";
 import { Box, Grid, Button } from '@mui/material';
-import heroImg from "../assets/images/laptop.png"
 import { makeStyles } from 'tss-react/mui';
 import { useState } from "react";
 import FormDialog from "../components/FormDialog";
@@ -54,7 +53,7 @@ const Home = () => {
           <Grid item xs={10} md={6} textAlign="center" margin={'auto'}>
             <img
               className={classes.heroImg}
-              src={heroImg}
+              src='images/laptop.png'
             />
           </Grid>
         </Grid>

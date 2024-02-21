@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box"
 import Typography from '@mui/material/Typography'
-import img from "../assets/images/404.png"
+
 import Button from '@mui/material/Button'
 import { Link } from "react-router-dom"
 
@@ -29,7 +29,7 @@ const NotFound = () => {
           width: "95%", maxWidth: "300px",
           margin: "auto", display: "block",
         }}
-        src={img}
+        src='/images/404.png'
         alt="Not Found Page Image"
       />
 
