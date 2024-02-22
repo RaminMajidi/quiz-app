@@ -6,7 +6,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState } from 'react';
 import BasicSelect from './BasicSelect';
-import { categores, tags,Limits } from '../assets/data/data';
+import { tags,Limits } from '../assets/data/data';
 import useQuizStore from '../zustand/quizStore';
 import { useNavigate } from "react-router-dom";
 import { errorHandler } from "../utils/Toast"
@@ -17,7 +17,6 @@ const TOKEN = import.meta.env.VITE_TOKEN;
 const FormDialog = ({ open, setOpen }) => {
 
     const navigate = useNavigate()
-    const [category, setCategory] = useState('')
     const [limit, setLimit] = useState(10)
     const [tag, setTag] = useState('')
     const [loading, setLoading] = useState(false)
@@ -28,7 +27,7 @@ const FormDialog = ({ open, setOpen }) => {
     };
 
     const handleGenarateQuiz = async () => {
-        const url = BASE_URL + `?apiKey=${TOKEN}&category=${category}&limit=${limit}&tags=${tag}`;
+        const url = BASE_URL + `?apiKey=${TOKEN}&limit=${limit}&tags=${tag}`;
         setLoading(true)
 
         try {
@@ -73,14 +72,6 @@ const FormDialog = ({ open, setOpen }) => {
                         Please enter the details of your questionnaire so
                         that we can create the desired questions for you.
                     </DialogContentText>
-
-                    <BasicSelect
-                        inputLabel="Category"
-                        label="Category"
-                        value={category}
-                        setValue={setCategory}
-                        items={categores}
-                    />
 
                     <BasicSelect
                         inputLabel="Limit"

@@ -29,7 +29,7 @@ const NotFound = () => {
           width: "95%", maxWidth: "300px",
           margin: "auto", display: "block",
         }}
-        src='/images/404.png'
+        src='/quiz-app/images/404.png'
         alt="Not Found Page Image"
       />
 
