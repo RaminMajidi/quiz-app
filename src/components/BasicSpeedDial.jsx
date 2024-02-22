@@ -17,7 +17,7 @@ export default function BasicSpeedDial() {
                 icon={<SpeedDialIcon />}
             >
                 <SpeedDialAction
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/quiz-app")}
                     key="Home"
                     icon={<HomeIcon />}
                     tooltipTitle="Home"

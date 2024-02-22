@@ -33,7 +33,7 @@ const NotFound = () => {
         alt="Not Found Page Image"
       />
 
-      <Link to={"/"}>
+      <Link to={"/quiz-app"}>
         <Button
           variant="contained"
           color="primary"
