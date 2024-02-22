@@ -4,7 +4,7 @@ import { Box, Grid, Button } from '@mui/material';
 import { makeStyles } from 'tss-react/mui';
 import { useState } from "react";
 import FormDialog from "../components/FormDialog";
-
+const PUBLIC_URL = import.meta.env.VITE_PUBLIC_URL;
 
 const useStyles = makeStyles()((theme) => {
   return {
@@ -53,7 +53,7 @@ const Home = () => {
           <Grid item xs={10} md={6} textAlign="center" margin={'auto'}>
             <img
               className={classes.heroImg}
-              src='/quiz-app/images/laptop.png'
+              src={PUBLIC_URL + '/images/laptop.png'}
             />
           </Grid>
         </Grid>

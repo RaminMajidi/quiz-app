@@ -1,8 +1,8 @@
 import Box from "@mui/material/Box"
 import Typography from '@mui/material/Typography'
-
 import Button from '@mui/material/Button'
 import { Link } from "react-router-dom"
+const PUBLIC_URL = import.meta.env.VITE_PUBLIC_URL;
 
 const NotFound = () => {
   return (
@@ -29,7 +29,7 @@ const NotFound = () => {
           width: "95%", maxWidth: "300px",
           margin: "auto", display: "block",
         }}
-        src='/quiz-app/images/404.png'
+        src={PUBLIC_URL + '/images/404.png'}
         alt="Not Found Page Image"
       />
 
