@@ -53,7 +53,7 @@ const Home = () => {
           <Grid item xs={10} md={6} textAlign="center" margin={'auto'}>
             <img
               className={classes.heroImg}
-              src='images/laptop.png'
+              src='/images/laptop.png'
             />
           </Grid>
         </Grid>
